@@ -1,0 +1,163 @@
+<template>
+    <div class="item file_caption" :data-index="index" @dblclick="handleDoubleClick()">
+        <div class="icon-container">
+            <div class="preloader" :class="{ active: upload.preloaded }" v-if="upload.type.indexOf('image') > -1">
+                <div class="loader"></div>
+                <img class="image-thumbnail" :src="upload.preloaded" @click="viewImage(upload)"/>
+            </div>
+            <div class="icon-wrapper" v-else>
+                <i :class="upload.icon" aria-hidden="true"></i>
+            </div>
+        </div>
+        <div class="info">
+            <h5>{{upload.name}}</h5>
+            <p>Size: {{formatSize(upload.size)}}</p>
+            <p v-if="upload.type!='directory'">
+                Public URL:
+                <a :href="upload.url" target="_blank">Click here</a>
+            </p>
+            <p class="data-dz-date">Last modified: {{upload.updated_at}}</p>
+            <p v-if="search.keyword">Location: {{upload.path}}</p>
+            <div class="checkbox" v-if="!mode || (mode &&  upload.type != 'directory')">
+                <input type="checkbox" :id="upload.token" :value="upload" v-model="upload.selected" @change="checkItem"/>
+                <label :for="upload.token">Select</label>
+            </div>
+        </div>
+    </div>
+</template>
+<script>
+    export default{
+        props: {
+            index: {
+                type: Number,
+                required: true
+            },
+            upload: {
+                type: Object,
+                required: true
+            },
+            search: {
+                type: Object,
+                required: true
+            },
+            mode: {
+                type: String,
+                required: false
+            }
+
+        },
+
+        data(){
+            return {
+                items: [],
+                selected: false,
+            }
+        },
+        mounted(){
+            let self = this;
+            self.preloadImage();
+            VueEvent.$on('edit-image', function (file) {
+                if (self.upload.token == file.token) {
+                    self.upload.thumbnail = file.thumbnail + '?' + new Date().getTime();
+                    self.preloadImage();
+                }
+            });
+        },
+
+        methods: {
+            formatSize(bytes = 0){
+                bytes = isNaN(bytes) ? 0 : bytes;
+
+                let thresholds = [
+                    {
+                        range: 1024,
+                        unit: 'Bytes'
+                    },
+                    {
+                        range: 1048576,
+                        unit: 'KB'
+                    },
+                    {
+                        range: 1073741824,
+                        unit: 'MB'
+                    },
+                    {
+                        range: 1073741824,
+                        unit: 'GB'
+                    },
+                ];
+
+                let output = '';
+
+                thresholds.some(function (threshold, index) {
+                    let {range, unit} = threshold;
+                    if (bytes < range && bytes > 0) {
+                        output = (bytes / thresholds[index - 1].range).toFixed(2) + unit;
+                        return true;
+                    }
+                });
+
+                return output ? output : '0 Bytes';
+            },
+
+            preloadImage(){
+                let self = this;
+                if (self.upload.type.indexOf('image') > -1) {
+                    let path = self.upload.thumbnail;
+                    let image = new Image();
+                    image.src = path;
+
+                    $(image).on('load', function () {
+                        self.upload.preloaded = path;
+                    });
+                }
+            },
+
+            handleDoubleClick(file){
+                let self = this;
+
+                if (self.upload.type != 'directory') {
+                    return;
+                }
+                VueEvent.$emit('open-directory', self.upload.path);
+                self.preloadImage();
+            },
+
+            viewImage(){
+                let self = this;
+                let image = self.upload;
+                image.preloaded = null;
+                VueModal.create()
+                        .data({
+                            image: image
+                        })
+                        .buttonLabels({
+                            confirm: 'View original size ( new window )'
+                        })
+                        .callbacks({
+                            confirm(){
+                                window.open(image.url, "_blank");
+                                this.close();
+                            }
+                        })
+                        .components({
+                            content: 'view-image',
+                        })
+                        .show();
+            },
+
+            checkItem(){
+                let self = this;
+                VueEvent.$emit('select-item', self.upload);
+            }
+        },
+        watch: {
+            upload(){
+                let self = this;
+                if (self.upload.type.indexOf('image') > -1 && !self.upload.preload) {
+                    self.preloadImage();
+                }
+            },
+        }
+    }
+</script>
