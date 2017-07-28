@@ -1,33 +1,31 @@
 {
-	"name": "file-manager",
-	"version": "1.0.0",
-	"description": "",
-	"main": "dist/app.js",
-	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1"
-	},
-	"author": "Ashley Lutchumun",
-	"license": "ISC",
-	"devDependencies": {
-		"block-ui": "^2.70.1",
-		"bootstrap-grid": "^2.0.1",
-		"chart.js": "^2.3.0",
-		"cropperjs": "^0.8.1",
-		"datatables.net": "^1.10.12",
-		"datatables.net-dt": "^1.10.12",
-		"dropzone": "^4.3.0",
-		"font-awesome": "^4.6.3",
-		"gulp": "^3.9.1",
-		"hint.css": "^2.3.2",
-		"jquery-contextmenu": "^2.4.2",
-		"laravel-elixir": "^6.0.0-14",
-		"laravel-elixir-vue-2": "^0.2.0",
-		"laravel-elixir-webpack-official": "^1.0.2",
-		"malihu-custom-scrollbar-plugin": "^3.1.5",
-		"nestable-fork": "^1.0.3",
-		"reset": "git+https://github.com/orckid-lab/reset.git",
-		"velocity-animate": "^1.2.3",
-		"vue-modal": "git+https://github.com/mm-x/vue-modal.git",
-		"vue-resource": "^1.0.3"
-	}
+  "name": "file-manager",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "NODE_ENV=development webpack --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "watch": "NODE_ENV=development webpack --watch --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "hot": "NODE_ENV=development webpack-dev-server --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "production": "NODE_ENV=production webpack --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
+  },
+  "author": "Ashley Lutchumun",
+  "license": "ISC",
+  "devDependencies": {
+    "block-ui": "^2.70.1",
+    "cropperjs": "^0.8.1",
+    "dropzone": "^4.3.0",
+    "font-awesome": "^4.6.3",
+    "gulp": "^3.9.1",
+    "hint.css": "^2.3.2",
+    "jquery-contextmenu": "^2.4.2",
+    "laravel-mix": "^1.4.2",
+    "malihu-custom-scrollbar-plugin": "^3.1.5",
+    "nestable-fork": "^1.0.3",
+    "reset": "git+https://github.com/orckid-lab/reset.git",
+    "velocity-animate": "^1.2.3",
+    "vue-resource": "^1.0.3",
+    "vue": "^2.1.10"
+  }
 }

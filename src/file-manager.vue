@@ -1,8 +1,6 @@
-<!--<style lang="less">
-    @import './less/file-manager.less';
-</style>-->
 <template>
-    <div>
+    <p>test</p>
+<!--    <div>
         <form method="post" action="javascript:;" class="form grid">
             <div class="file-manager" :class="dropZoneClasses">
                 <header>
@@ -121,21 +119,22 @@
             </div>
             <button type="submit">download</button>
         </form>
-    </div>
+    </div>-->
 </template>
 <script type="text/babel">
-    VueModal.component('create-directory', require('./modal/create-directory.vue'));
+    /*VueModal.component('create-directory', require('./modal/create-directory.vue'));
     VueModal.component('view-image', require('./modal/view-image.vue'));
     VueModal.component('rename-item', require('./modal/rename-item.vue'));
     VueModal.component('move-items', require('./modal/move-items.vue'));
     VueModal.component('move-items-footer', require('./modal/move-items-footer.vue'));
     VueModal.component('edit-image', require('./modal/edit-image.vue'));
-    VueModal.component('edit-image-footer', require('./modal/edit-image-footer.vue'));
-    Vue.component('directories', require('./directories.vue'));
-    Vue.component('file', require('./file.vue'));
+    VueModal.component('edit-image-footer', require('./modal/edit-image-footer.vue'));*/
+    //Vue.component('directories', require('./directories.vue'));
+    //Vue.component('file', require('./file.vue'));
 
     export default{
-        props: {
+    	name: 'file-manager',
+       /* props: {
             payload: {
                 type: Object,
                 required: false
@@ -217,7 +216,7 @@
                 if (self.selected_filter != 0) {
                     data = data.filter(function (item) {
                         let valid = self.filters[self.selected_filter].value.indexOf(item.type.replace(/.*\//, '')) > -1
-                                || self.filters[self.selected_filter].value.indexOf(item.type.replace(/\/.*/, '')) > -1;
+                                || self.filters[self.selected_filter].value.indexOf(item.type.replace(/\/.*!/, '')) > -1;
 
                         if (item.type == 'directory' || valid) {
                             return item;
@@ -909,6 +908,6 @@
                     return file.token != item.token;
                 });
             }
-        }
+        }*/
     }
 </script>
