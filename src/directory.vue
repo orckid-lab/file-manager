@@ -43,14 +43,15 @@
         },
 
         mounted(){
+            let self = this;
 
-            VueEvent.$on('item-created', this.addedItem);
+	        self.$bus.on('item-created', self.addedItem);
 
-            VueEvent.$on('item-deleted', this.deleteItem);
+	        self.$bus.on('item-deleted', self.deleteItem);
 
-            VueEvent.$on('item-rename', this.renameItem);
+	        self.$bus.on('item-rename', self.renameItem);
 
-            VueEvent.$on('item-moved', this.moveItem);
+	        self.$bus.on('item-moved', self.moveItem);
         },
 
         methods: {
@@ -76,11 +77,11 @@
                 let {current_path, upload} = settings;
                 let self = this;
 
-                if (current_path != self.current_directory.path) {
+                if (current_path !== self.current_directory.path) {
                     return;
                 }
 
-                if (upload.type == 'directory') {
+                if (upload.type === 'directory') {
                     self.current_directory.hasDirectories = self.current_directory.hasDirectories + 1;
                     self.current_directory.subDirectories.push(upload);
                     return;
@@ -94,7 +95,7 @@
 
                 if (data.files_parents.indexOf(self.current_directory.token) > -1) {
                     self.current_directory.hasFiles = self.current_directory.hasFiles - (data.files_parents.filter(function (token) {
-                                return token == self.current_directory.token;
+                                return token === self.current_directory.token;
                             }).length);
                 }
 
@@ -104,7 +105,7 @@
 
                 if (data.directories_parents.indexOf(self.current_directory.token) > -1) {
                     self.current_directory.subDirectories = self.current_directory.subDirectories.filter(function (directory) {
-                        return data.directories.indexOf(directory.token) == -1;
+                        return data.directories.indexOf(directory.token) === -1;
                     });
                 }
             },
@@ -113,18 +114,18 @@
                 let {file} = parameters;
                 let self = this;
 
-                if (file.token == self.current_directory.token) {
+                if (file.token === self.current_directory.token) {
                     self.current_directory.name = file.name;
                 }
             },
 
             clickAction(directory){
                 let self = this;
-                if(self.mode == 'navigate'){
-                    VueEvent.$emit('open-directory', directory.path);
+                if(self.mode === 'navigate'){
+	                self.$bus.emit('open-directory', directory.path);
                     return;
                 }
-                VueEvent.$emit('select-destination', directory);
+	            self.$bus.emit('select-destination', directory);
             },
 
             moveItem(parameters) {
@@ -133,7 +134,7 @@
 
                 if (data.files_parents.indexOf(self.current_directory.token) > -1) {
                     self.current_directory.hasFiles = self.current_directory.hasFiles - (data.files_parents.filter(function (token) {
-                                return token == self.current_directory.token;
+                                return token === self.current_directory.token;
                             }).length);
                 }
 
@@ -143,8 +144,8 @@
                     });
                 }
 
-                if (data.destination.token == self.current_directory.token) {
-                    Vue.set(self, 'current_directory', data.destination);
+                if (data.destination.token === self.current_directory.token) {
+                    self.$set(self, 'current_directory', data.destination);
                 }
 
             },

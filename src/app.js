@@ -1,13 +1,15 @@
-//import file_manager from "./file-manager.vue";
+import Component from "./file-manager.vue";
+import Modal from "./file-manager-modal.vue";
 
-/*const FileManager = {
-	install(Vue, options) {
-		Vue.component(file_manager.name, file_manager);
+const FileManager = {
+	install: function (Vue) {
+		Vue.component(Component.name, Component);
+		Vue.component(Modal.name, Modal);
 	}
 };
 
-export default FileManager;*/
-export function test() {
-	console.log(value);
-}
+export default FileManager;
 
+if (window.Vue) {
+	window.Vue.use(FileManager)
+}
