@@ -1,5 +1,10 @@
 <template>
     <div>
+        <ui-preloader :show="loading"></ui-preloader>
+        <ui-progress-linear color="black"
+                            type="determinate"
+                            :progress="upload_progress"
+                            v-show="isUploading"></ui-progress-linear>
         <ui-modal ref="modal" title="Title" @close="closeModal">
             <rename-item v-if="modal == 1" :items="selectedItemsToken"></rename-item>
             <move-item v-if="modal == 2" :root="root" :items="selectedItemsToken"></move-item>
@@ -16,25 +21,24 @@
             v-bind:style="{top: menu.top, left: menu.left}">
             <li v-for="option in options" @click="openModal(option.value)">{{ option.label }}</li>
         </ul>
-        <ui-progress-linear color="black"
-                            type="determinate"
-                            :progress="upload_progress"
-                            v-show="upload_progress > 0"></ui-progress-linear>
         <form method="post" action="#" class="form grid" id="file-upload">
             <div class="file-manager" :class="dropZoneClasses">
                 <header>
                     <div class="button-group">
-                        <button @click="back()" :disabled="history.length == 0">
+                        <button type="button" @click="back()" :disabled="history.length == 0">
                             <i class="fa fa-chevron-left" aria-hidden="true"></i>
                             <span>Back</span>
                         </button>
-                        <button @click="refresh">
+                        <button type="button" @click="refresh">
                             <i class="fa fa-refresh" aria-hidden="true"></i>
                             <span>Refresh</span>
                         </button>
                     </div>
                     <div class="button-group">
-                        <button :disabled="search.keyword.length > 0" ref="upload-button" id="upload-button">
+                        <button type="button"
+                                :disabled="search.keyword.length > 0"
+                                ref="upload-button"
+                                id="upload-button">
                             <i class="fa fa-upload" aria-hidden="true"></i>
                             <span>Upload</span>
                         </button>
@@ -44,28 +48,28 @@
                         </button>-->
                     </div>
                     <div class="button-group">
-                        <button @click="openModal(6)">
+                        <button type="button" @click="openModal(6)">
                             <i class="fa fa-folder-open" aria-hidden="true"></i>
                             <span>Add folder</span>
                         </button>
-                        <button :disabled="noItemSelected" @click="clearSelection">
+                        <button type="button" :disabled="noItemSelected" @click="clearSelection">
                             <span>Deselect all</span>
                         </button>
-                        <button :disabled="noItemSelected" @click="openModal(2)">
+                        <button type="button" :disabled="noItemSelected" @click="openModal(2)">
                             <i class="fa fa-reply-all" aria-hidden="true"></i>
                             <span>Move</span>
                         </button>
-                        <button :disabled="noItemSelected" @click="openModal(3)">
+                        <button type="button" :disabled="noItemSelected" @click="openModal(3)">
                             <i class="fa fa-trash" aria-hidden="true"></i>
                             <span>Delete</span>
                         </button>
                     </div>
                     <div class="button-group">
-                        <button @click="order = 1"
+                        <button type="button" @click="order = 1"
                                 :class="{ active : order == 1 }">
                             <i class="fa fa-sort-amount-asc" aria-hidden="true"></i>
                         </button>
-                        <button @click="order = -1"
+                        <button type="button" @click="order = -1"
                                 :class="{ active : order == -1 }">
                             <i class="fa fa-sort-amount-desc" aria-hidden="true"></i>
                         </button>
@@ -131,6 +135,7 @@
                                     </div>
                                     <div class="file-row">
                                         <file v-for="(upload, index) in items"
+                                              :modalMode="modalMode"
                                               :index="index"
                                               :upload="upload"
                                               :search="search"></file>
@@ -149,8 +154,6 @@
     </div>
 </template>
 <script type="text/babel">
-
-	let Dropzone = require('dropzone');
 	let Alert = function () {
 		return {
 			type: 'warning',
@@ -176,12 +179,17 @@
 			multiple: {
 				type: Boolean,
 				default: true
+			},
+			modalMode: {
+				type: Boolean,
+				default: false
 			}
 		},
 
 		data(){
 			return {
 				payload: {},
+				loading: true,
 				current_path: [],
 				data_items: [],
 				breadcrumb: [],
@@ -232,7 +240,6 @@
 				history: [],
 				csrf_token: Laravel.csrfToken,
 				zip_path: null,
-				mode: null,
 				menu: {
 					show: false,
 					top: '0px',
@@ -340,7 +347,6 @@
 		mounted(){
 			let self = this;
 
-			//self.initialiseDropzone();
 			self.getPayload();
 
 			self.$bus.on('clear-selection', self.clearSelection);
@@ -359,6 +365,7 @@
 		},
 
 		methods: {
+
 			getPayload(){
 				let self = this;
 
@@ -378,7 +385,7 @@
 			initialiseDropzone(){
 				let self = this;
 
-				let file_upload = new Dropzone(
+				new Dropzone(
 					'#file-upload', {
 						url: '/file-manager/upload',
 						previewTemplate: document.getElementById('preview-template').innerHTML,
@@ -462,6 +469,7 @@
 						}
 					}
 				);
+				self.loading = false;
 			},
 
 			formatSize(bytes = 0){
@@ -606,12 +614,15 @@
 
 				if (file.selected) {
 					self.selected_items.push(file);
+					self.$emit('selected', self.selected_items);
 					return;
 				}
 
 				self.selected_items = self.selected_items.filter(function (item) {
 					return file.token !== item.token;
 				});
+
+				self.$emit('selected', self.selected_items);
 			},
 
 			setMenu(top, left) {
@@ -633,15 +644,14 @@
 
 			openMenu(index, event) {
 				let self = this;
-
-				self.single_item = self.items[index];
-
 				self.menu.show = true;
 
-				self.$nextTick(function () {
-					self.single_item.selected = true;
-					self.selectItem(self.single_item);
+				self.single_item = self.items[index];
+				self.clearSelection();
+				self.single_item.selected = true;
+				self.selectItem(self.single_item);
 
+				self.$nextTick(function () {
 					self.$refs['right'].focus();
 					self.setMenu(event.y, event.x)
 				}.bind(this));

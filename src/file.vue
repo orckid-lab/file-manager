@@ -18,7 +18,7 @@
             </p>
             <p class="data-dz-date">Last modified: {{upload.updated_at}}</p>
             <p v-if="search.keyword">Location: {{upload.path}}</p>
-            <div class="checkbox" v-if="!mode || (mode &&  upload.type != 'directory')">
+            <div class="checkbox" v-if="show">
                 <input type="checkbox"
                        :id="upload.token"
                        :value="upload"
@@ -44,11 +44,10 @@
 				type: Object,
 				required: true
 			},
-			mode: {
-				type: String,
-				required: false
+			modalMode: {
+				type: Boolean,
+				default: false
 			}
-
 		},
 
 		data(){
@@ -57,6 +56,12 @@
 				selected: false,
 			}
 		},
+
+        computed:{
+		    show(){
+		    	return !(this.modalMode && this.upload.type === 'directory');
+            }
+        },
 		mounted(){
 			let self = this;
 			self.preloadImage();
@@ -149,7 +154,7 @@
 				if (self.upload.type.indexOf('image') > -1 && !self.upload.preload) {
 					self.preloadImage();
 				}
-			},
+			}
 		}
 	}
 </script>
