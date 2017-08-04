@@ -116,9 +116,9 @@
 					let image = new Image();
 					image.src = path;
 
-					$(image).on('load', function () {
+					image.onload = function () {
 						self.upload.preloaded = path;
-					});
+					};
 				}
 			},
 

@@ -1487,9 +1487,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				var image = new Image();
 				image.src = path;
 
-				$(image).on('load', function () {
+				image.onload = function () {
 					self.upload.preloaded = path;
-				});
+				};
 			}
 		},
 		handleDoubleClick: function handleDoubleClick(file) {
