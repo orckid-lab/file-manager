@@ -442,6 +442,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 var Alert = function Alert() {
 	return {
@@ -2709,7 +2711,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
           _vm.openModal(option.value)
         }
       }
-    }, [_vm._v(_vm._s(option.label))])
+    }, [_c('a', [_vm._v(_vm._s(option.label))])])
   })) : _vm._e(), _vm._v(" "), _c('form', {
     staticClass: "form grid",
     attrs: {
@@ -2863,7 +2865,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "placeholder": "Search.."
     },
     on: {
-      "keyup": _vm.searchData
+      "keydown": _vm.searchData
     },
     model: {
       value: (_vm.search.keyword),

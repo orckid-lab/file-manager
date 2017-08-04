@@ -19,7 +19,9 @@
             v-if="menu.show"
             @blur="closeMenu"
             :class="{top: menu.top, left: menu.left}">
-            <li v-for="option in options" @click="openModal(option.value)">{{ option.label }}</li>
+            <li v-for="option in options" @click="openModal(option.value)">
+                <a>{{ option.label }}</a>
+            </li>
         </ul>
         <form method="post" action="#" class="form grid" id="file-upload">
             <div class="file-manager" :class="dropZoneClasses">
@@ -81,7 +83,7 @@
                                 name="search"
                                 placeholder="Search.."
                                 v-model="search.keyword"
-                                @keyup="searchData">
+                                @keydown="searchData">
                         </ui-textbox>
                         <!--<label for="search">Search</label>
                         <input type="text"
