@@ -177,7 +177,7 @@ var Component = __webpack_require__(0)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "/home/vagrant/Code/laravel-cms/modules/file-manager/src/file-manager.vue"
+Component.options.__file = "/home/vagrant/Code/file-manager/src/file-manager.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] file-manager.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -217,7 +217,7 @@ var Component = __webpack_require__(0)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "/home/vagrant/Code/laravel-cms/modules/file-manager/src/directory.vue"
+Component.options.__file = "/home/vagrant/Code/file-manager/src/directory.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] directory.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -1033,7 +1033,7 @@ var Component = __webpack_require__(0)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "/home/vagrant/Code/laravel-cms/modules/file-manager/src/directories.vue"
+Component.options.__file = "/home/vagrant/Code/file-manager/src/directories.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] directories.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -1340,7 +1340,7 @@ var Component = __webpack_require__(0)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "/home/vagrant/Code/laravel-cms/modules/file-manager/src/file.vue"
+Component.options.__file = "/home/vagrant/Code/file-manager/src/file.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] file.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -1643,7 +1643,7 @@ var Component = __webpack_require__(0)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "/home/vagrant/Code/laravel-cms/modules/file-manager/src/modal/rename-item.vue"
+Component.options.__file = "/home/vagrant/Code/file-manager/src/modal/rename-item.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] rename-item.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -1848,7 +1848,7 @@ var Component = __webpack_require__(0)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "/home/vagrant/Code/laravel-cms/modules/file-manager/src/modal/move-items.vue"
+Component.options.__file = "/home/vagrant/Code/file-manager/src/modal/move-items.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] move-items.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -2011,7 +2011,7 @@ var Component = __webpack_require__(0)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "/home/vagrant/Code/laravel-cms/modules/file-manager/src/modal/delete-items.vue"
+Component.options.__file = "/home/vagrant/Code/file-manager/src/modal/delete-items.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] delete-items.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -2144,7 +2144,7 @@ var Component = __webpack_require__(0)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "/home/vagrant/Code/laravel-cms/modules/file-manager/src/modal/download-items.vue"
+Component.options.__file = "/home/vagrant/Code/file-manager/src/modal/download-items.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] download-items.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -2286,7 +2286,7 @@ var Component = __webpack_require__(0)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "/home/vagrant/Code/laravel-cms/modules/file-manager/src/modal/create-directory.vue"
+Component.options.__file = "/home/vagrant/Code/file-manager/src/modal/create-directory.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] create-directory.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -2464,7 +2464,7 @@ var Component = __webpack_require__(0)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "/home/vagrant/Code/laravel-cms/modules/file-manager/src/modal/view-image.vue"
+Component.options.__file = "/home/vagrant/Code/file-manager/src/modal/view-image.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] view-image.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -3037,7 +3037,7 @@ var Component = __webpack_require__(0)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "/home/vagrant/Code/laravel-cms/modules/file-manager/src/file-manager-modal.vue"
+Component.options.__file = "/home/vagrant/Code/file-manager/src/file-manager-modal.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] file-manager-modal.vue: functional components are not supported with templates, they should use render functions.")}
 
