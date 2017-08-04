@@ -17,8 +17,8 @@
             tabindex="-1"
             ref="right"
             v-if="menu.show"
-            v-on:blur="closeMenu"
-            v-bind:style="{top: menu.top, left: menu.left}">
+            @blur="closeMenu"
+            :class="{top: menu.top, left: menu.left}">
             <li v-for="option in options" @click="openModal(option.value)">{{ option.label }}</li>
         </ul>
         <form method="post" action="#" class="form grid" id="file-upload">
@@ -75,13 +75,21 @@
                         </button>
                     </div>
                     <div class="search-bar">
-                        <label for="search">Search</label>
+                        <ui-textbox
+                                icon="search"
+                                id="search"
+                                name="search"
+                                placeholder="Search.."
+                                v-model="search.keyword"
+                                @keyup="searchData">
+                        </ui-textbox>
+                        <!--<label for="search">Search</label>
                         <input type="text"
                                id="search"
                                name="search"
                                placeholder="Search.."
                                v-model="search.keyword"
-                               @keyup="searchData">
+                               @keyup="searchData">-->
                     </div>
                 </header>
                 <section class="content layout" id="uploadzone">

@@ -434,6 +434,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 var Alert = function Alert() {
 	return {
@@ -2684,10 +2692,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }) : _vm._e()], 1), _vm._v(" "), (_vm.menu.show) ? _c('ul', {
     ref: "right",
-    style: ({
-      top: _vm.menu.top,
-      left: _vm.menu.left
-    }),
+    class: {
+      top: _vm.menu.top, left: _vm.menu.left
+    },
     attrs: {
       "id": "context-menu",
       "tabindex": "-1"
@@ -2848,34 +2855,24 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   })])]), _vm._v(" "), _c('div', {
     staticClass: "search-bar"
-  }, [_c('label', {
+  }, [_c('ui-textbox', {
     attrs: {
-      "for": "search"
-    }
-  }, [_vm._v("Search")]), _vm._v(" "), _c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.search.keyword),
-      expression: "search.keyword"
-    }],
-    attrs: {
-      "type": "text",
+      "icon": "search",
       "id": "search",
       "name": "search",
       "placeholder": "Search.."
     },
-    domProps: {
-      "value": (_vm.search.keyword)
-    },
     on: {
-      "keyup": _vm.searchData,
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.search.keyword = $event.target.value
-      }
+      "keyup": _vm.searchData
+    },
+    model: {
+      value: (_vm.search.keyword),
+      callback: function($$v) {
+        _vm.search.keyword = $$v
+      },
+      expression: "search.keyword"
     }
-  })])]), _vm._v(" "), _c('section', {
+  })], 1)]), _vm._v(" "), _c('section', {
     staticClass: "content layout",
     attrs: {
       "id": "uploadzone"
