@@ -772,7 +772,7 @@ Vue.component('viewImage', __webpack_require__(29));
 		},
 		openDirectory: function openDirectory(path, back) {
 			var self = this;
-
+			self.loading = true;
 			var previous_directory = self.current_path.path;
 
 			self.search = {
@@ -789,9 +789,9 @@ Vue.component('viewImage', __webpack_require__(29));
 				if (!back && _.last(self.history) != previous_directory) {
 					self.history.push(previous_directory);
 				}
-				//unblock loading
+				self.loading = false;
 			}).catch(function (error) {
-				//unblock loading
+				self.loading = false;
 				console.log(error);
 			});
 		},
@@ -2662,6 +2662,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }), _vm._v(" "), _c('ui-modal', {
     ref: "modal",
     attrs: {
+      "dismiss-on": "close-button esc",
       "title": "Title"
     },
     on: {
@@ -3093,6 +3094,10 @@ Vue.component('file-manager', __webpack_require__(1));
 			type: Boolean,
 			required: false,
 			default: true
+		},
+		placeholder: {
+			type: String,
+			required: false
 		}
 	},
 
@@ -3163,6 +3168,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }) : _vm._e()], 1), _vm._v(" "), _c('input', {
     attrs: {
       "type": "text",
+      "placeholder": _vm.placeholder,
       "name": "file_name",
       "readonly": "readonly"
     },

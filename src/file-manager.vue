@@ -5,7 +5,7 @@
                             type="determinate"
                             :progress="upload_progress"
                             v-show="isUploading"></ui-progress-linear>
-        <ui-modal ref="modal" title="Title" @close="closeModal">
+        <ui-modal dismiss-on="close-button esc" ref="modal" title="Title" @close="closeModal">
             <rename-item v-if="modal == 1" :items="selectedItemsToken"></rename-item>
             <move-item v-if="modal == 2" :root="root" :items="selectedItemsToken"></move-item>
             <delete-item v-if="modal == 3" :items="selectedItemsToken"></delete-item>
@@ -519,7 +519,7 @@
 
 			openDirectory(path, back){
 				let self = this;
-
+                self.loading = true;
 				let previous_directory = self.current_path.path;
 
 				self.search = {
@@ -537,10 +537,10 @@
 						if (!back && _.last(self.history) != previous_directory) {
 							self.history.push(previous_directory);
 						}
-						//unblock loading
+						self.loading = false;
 					})
 					.catch(function (error) {
-						//unblock loading
+						self.loading = false;
 						console.log(error);
 					});
 			},

@@ -6,7 +6,7 @@
                           :multiple="multiple"
                           :modalMode="true"></file-manager>
         </ui-confirm>
-        <input type="text" name="file_name" readonly="readonly" :value="formattedFiles">
+        <input type="text" :placeholder="placeholder" name="file_name" readonly="readonly" :value="formattedFiles">
         <input type="hidden" v-for="file in files" name="file[]" :value="file.url">
         <span>
             <button class="button" type="button" @click="browse">
@@ -26,7 +26,11 @@
 				type: Boolean,
 				required: false,
 				default: true
-			}
+			},
+            placeholder: {
+				type: String,
+                required: false
+            }
 		},
 
 		computed: {
