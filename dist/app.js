@@ -3084,6 +3084,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 Vue.component('file-manager', __webpack_require__(1));
 
@@ -3127,11 +3128,11 @@ Vue.component('file-manager', __webpack_require__(1));
 	methods: {
 		browse: function browse() {
 			var self = this;
+			alert('test');
 			self.showModal = true;
 			self.$refs['file-manager'].open();
 		},
 		deny: function deny() {
-			console.log('deny');
 			this.$refs['file-manager'].close();
 			this.selected_files = [];
 		},
@@ -3163,7 +3164,14 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "title": "Select file"
     },
     on: {
-      "confirm": _vm.confirm,
+      "confirm": function($event) {
+        $event.preventDefault();
+        _vm.confirm($event)
+      },
+      "close": function($event) {
+        $event.preventDefault();
+        _vm.close($event)
+      },
       "deny": function($event) {
         $event.preventDefault();
         _vm.deny($event)

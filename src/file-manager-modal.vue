@@ -1,6 +1,7 @@
 <template>
     <div class="input-group">
-        <ui-confirm dismiss-on="close-button esc" ref="file-manager" title="Select file" @confirm="confirm" @deny.prevent="deny">
+        <ui-confirm dismiss-on="close-button esc" ref="file-manager" title="Select file" @confirm.prevent="confirm"
+                    @close.prevent="close" @deny.prevent="deny">
             <file-manager v-if="showModal"
                           @selected="getSelected"
                           :multiple="multiple"
@@ -59,12 +60,12 @@
 		methods: {
 			browse(){
 				let self = this;
+				alert('test');
 				self.showModal = true;
 				self.$refs['file-manager'].open();
 			},
 
 			deny(){
-				console.log('deny');
 				this.$refs['file-manager'].close();
 				this.selected_files = [];
 			},
