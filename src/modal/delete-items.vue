@@ -4,7 +4,7 @@
 		<ui-button button-type="submit" :loading="progress">
 			Delete
 		</ui-button>
-		<ui-button button-type="button" @click="close">
+		<ui-button button-type="button" :loading="progress" @click="close">
 			Close
 		</ui-button>
 	</form>

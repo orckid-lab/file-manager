@@ -12,7 +12,7 @@
                :loading="progress">
            Download
        </ui-button>
-       <ui-button button-type="button" @click="close()">
+       <ui-button button-type="button" @click="close()" :loading="progress">
            Close
        </ui-button>
    </div>

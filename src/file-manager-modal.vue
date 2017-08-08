@@ -1,11 +1,5 @@
 <template>
     <div class="input-group">
-        <!--<ui-confirm dismiss-on="close-button esc" ref="file-manager" title="Select file">
-            <file-manager v-if="showModal"
-                          @selected="getSelected"
-                          :multiple="multiple"
-                          :modalMode="true"></file-manager>
-        </ui-confirm>-->
         <ui-modal dismiss-on="close-button esc" ref="file-manager" title="Select file" @close="close">
             <file-manager v-if="showModal"
                           @selected="getSelected"
