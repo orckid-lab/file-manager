@@ -3163,7 +3163,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     },
     on: {
       "confirm": _vm.confirm,
-      "close": _vm.close,
+      "close": function($event) {
+        $event.preventDefault();
+        _vm.close($event)
+      },
       "deny": _vm.deny
     }
   }, [(_vm.showModal) ? _c('file-manager', {

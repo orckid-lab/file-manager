@@ -1,6 +1,6 @@
 <template>
     <div class="input-group">
-        <ui-confirm dismiss-on="close-button esc" ref="file-manager" title="Select file" @confirm="confirm" @close="close" @deny="deny">
+        <ui-confirm dismiss-on="close-button esc" ref="file-manager" title="Select file" @confirm="confirm" @close.prevent="close" @deny="deny">
             <file-manager v-if="showModal"
                           @selected="getSelected"
                           :multiple="multiple"
