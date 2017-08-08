@@ -1824,7 +1824,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_vm._v("\n        Rename\n    ")]), _vm._v(" "), _c('ui-button', {
     attrs: {
-      "button-type": "button"
+      "button-type": "button",
+      "loading": _vm.progress
     },
     on: {
       "click": function($event) {
@@ -1987,7 +1988,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_vm._v("\n            Move\n        ")]), _vm._v(" "), _c('ui-button', {
     attrs: {
-      "button-type": "button"
+      "button-type": "button",
+      "loading": _vm.progress
     },
     on: {
       "click": function($event) {
@@ -2122,7 +2124,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_vm._v("\n\t\tDelete\n\t")]), _vm._v(" "), _c('ui-button', {
     attrs: {
-      "button-type": "button"
+      "button-type": "button",
+      "loading": _vm.progress
     },
     on: {
       "click": _vm.close
@@ -2262,7 +2265,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_vm._v("\n        Download\n    ")]), _vm._v(" "), _c('ui-button', {
     attrs: {
-      "button-type": "button"
+      "button-type": "button",
+      "loading": _vm.progress
     },
     on: {
       "click": function($event) {
@@ -2440,7 +2444,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_vm._v("\n\t\tSave\n\t")]), _vm._v(" "), _c('ui-button', {
     attrs: {
-      "button-type": "button"
+      "button-type": "button",
+      "loading": _vm.progress
     },
     on: {
       "click": function($event) {
@@ -3063,13 +3068,6 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //

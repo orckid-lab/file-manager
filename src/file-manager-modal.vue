@@ -10,7 +10,6 @@
                 <ui-button button-type="button" @click="deny">Cancel</ui-button>
             </div>
         </ui-modal>
-        <!--<input type="text" :placeholder="placeholder" name="file_name" readonly="readonly" :value="formattedFiles">-->
         <span v-html="renderPath"></span>
         <input type="hidden" v-for="file in files" name="file[]" :value="file.url">
         <button class="button" type="button" @click="browse">
