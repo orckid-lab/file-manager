@@ -3131,13 +3131,13 @@ Vue.component('file-manager', __webpack_require__(1));
 			self.showModal = true;
 			self.$refs['file-manager'].open();
 		},
-		deny: function deny() {
+		deny: function deny(event) {
+			event.preventDefault();
+			console.log('deny');
 			this.$refs['file-manager'].close();
 			this.selected_files = [];
 		},
-		close: function close(event) {
-			event.preventDefault();
-			console.log('preventing form submission');
+		close: function close() {
 			this.showModal = false;
 		},
 		confirm: function confirm() {
@@ -3166,10 +3166,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     },
     on: {
       "confirm": _vm.confirm,
-      "close": function($event) {
-        _vm.close($event)
-      },
-      "deny": _vm.deny
+      "close": _vm.close,
+      "deny": function($event) {
+        $event.preventDefault();
+        _vm.deny($event)
+      }
     }
   }, [(_vm.showModal) ? _c('file-manager', {
     attrs: {
