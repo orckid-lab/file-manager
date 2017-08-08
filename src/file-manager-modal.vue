@@ -1,12 +1,13 @@
 <template>
     <div class="input-group">
-        <ui-confirm ref="file-manager" title="Select file" @confirm="confirm" @close="close" @deny="deny">
+        <ui-confirm dismiss-on="close-button esc" ref="file-manager" title="Select file" @confirm="confirm" @close="close" @deny="deny">
             <file-manager v-if="showModal"
                           @selected="getSelected"
                           :multiple="multiple"
                           :modalMode="true"></file-manager>
         </ui-confirm>
-        <input type="text" :placeholder="placeholder" name="file_name" readonly="readonly" :value="formattedFiles">
+        <!--<input type="text" :placeholder="placeholder" name="file_name" readonly="readonly" :value="formattedFiles">-->
+        <span v-html="renderPath"></span>
         <input type="hidden" v-for="file in files" name="file[]" :value="file.url">
         <span>
             <button class="button" type="button" @click="browse">
@@ -30,6 +31,9 @@
             placeholder: {
 				type: String,
                 required: false
+            },
+            value: {
+				type: String,
             }
 		},
 
@@ -38,7 +42,11 @@
 				return this.files.map(function (file) {
 					return file.name;
 				}).join(',');
-			}
+			},
+
+            renderPath(){
+				return this.formattedFiles ? this.formattedFiles : this.placeholder;
+            }
 		},
 
 		data(){
@@ -71,6 +79,7 @@
 
 			getSelected(selected_files){
 				this.selected_files = selected_files;
+				this.$emit('input', selected_files);
 			}
 		}
 	}
