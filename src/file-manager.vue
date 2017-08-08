@@ -5,7 +5,7 @@
                             type="determinate"
                             :progress="upload_progress"
                             v-show="isUploading"></ui-progress-linear>
-        <ui-modal dismiss-on="close-button esc" ref="modal" title="Title" @close="closeModal">
+        <ui-modal dismiss-on="close-button esc" ref="modal" title="Choose">
             <rename-item v-if="modal == 1" :items="selectedItemsToken"></rename-item>
             <move-item v-if="modal == 2" :root="root" :items="selectedItemsToken"></move-item>
             <delete-item v-if="modal == 3" :items="selectedItemsToken"></delete-item>

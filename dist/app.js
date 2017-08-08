@@ -2663,10 +2663,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     ref: "modal",
     attrs: {
       "dismiss-on": "close-button esc",
-      "title": "Title"
-    },
-    on: {
-      "close": _vm.closeModal
+      "title": "Choose"
     }
   }, [(_vm.modal == 1) ? _c('rename-item', {
     attrs: {
