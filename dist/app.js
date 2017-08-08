@@ -3084,6 +3084,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 Vue.component('file-manager', __webpack_require__(1));
 
@@ -3131,8 +3139,8 @@ Vue.component('file-manager', __webpack_require__(1));
 			self.$refs['file-manager'].open();
 		},
 		deny: function deny() {
-			this.$refs['file-manager'].close();
 			this.selected_files = [];
+			this.$refs['file-manager'].close();
 		},
 		close: function close() {
 			this.showModal = false;
@@ -3140,6 +3148,7 @@ Vue.component('file-manager', __webpack_require__(1));
 		confirm: function confirm() {
 			this.files = JSON.parse(JSON.stringify(this.selected_files));
 			this.selected_files = [];
+			this.$refs['file-manager'].close();
 		},
 		getSelected: function getSelected(selected_files) {
 			this.selected_files = selected_files;
@@ -3154,13 +3163,41 @@ Vue.component('file-manager', __webpack_require__(1));
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "input-group"
-  }, [_c('ui-confirm', {
+  }, [_c('ui-modal', {
     ref: "file-manager",
     attrs: {
       "dismiss-on": "close-button esc",
       "title": "Select file"
+    },
+    on: {
+      "close": _vm.close
     }
-  }), _vm._v(" "), _c('span', {
+  }, [(_vm.showModal) ? _c('file-manager', {
+    attrs: {
+      "multiple": _vm.multiple,
+      "modalMode": true
+    },
+    on: {
+      "selected": _vm.getSelected
+    }
+  }) : _vm._e(), _vm._v(" "), _c('div', {
+    slot: "footer"
+  }, [_c('ui-button', {
+    attrs: {
+      "button-type": "button",
+      "color": "primary"
+    },
+    on: {
+      "click": _vm.confirm
+    }
+  }, [_vm._v("Ok")]), _vm._v(" "), _c('ui-button', {
+    attrs: {
+      "button-type": "button"
+    },
+    on: {
+      "click": _vm.deny
+    }
+  }, [_vm._v("Cancel")])], 1)], 1), _vm._v(" "), _c('span', {
     domProps: {
       "innerHTML": _vm._s(_vm.renderPath)
     }
@@ -3174,7 +3211,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         "value": file.url
       }
     })
-  }), _vm._v(" "), _c('span', [_c('button', {
+  }), _vm._v(" "), _c('button', {
     staticClass: "button",
     attrs: {
       "type": "button"
@@ -3187,7 +3224,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "aria-hidden": "true"
     }
-  }, [_vm._v("Browse")])])])], 2)
+  }, [_vm._v("Browse")])])], 2)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
