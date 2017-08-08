@@ -1,19 +1,27 @@
 <template>
     <div class="input-group">
-        <ui-confirm dismiss-on="close-button esc" ref="file-manager" title="Select file">
-            <!--<file-manager v-if="showModal"
+        <!--<ui-confirm dismiss-on="close-button esc" ref="file-manager" title="Select file">
+            <file-manager v-if="showModal"
                           @selected="getSelected"
                           :multiple="multiple"
-                          :modalMode="true"></file-manager>-->
-        </ui-confirm>
+                          :modalMode="true"></file-manager>
+        </ui-confirm>-->
+        <ui-modal dismiss-on="close-button esc" ref="file-manager" title="Select file" @close="close">
+            <file-manager v-if="showModal"
+                          @selected="getSelected"
+                          :multiple="multiple"
+                          :modalMode="true"></file-manager>
+            <div slot="footer">
+                <ui-button button-type="button" color="primary" @click="confirm">Ok</ui-button>
+                <ui-button button-type="button" @click="deny">Cancel</ui-button>
+            </div>
+        </ui-modal>
         <!--<input type="text" :placeholder="placeholder" name="file_name" readonly="readonly" :value="formattedFiles">-->
         <span v-html="renderPath"></span>
         <input type="hidden" v-for="file in files" name="file[]" :value="file.url">
-        <span>
-            <button class="button" type="button" @click="browse">
-                <i class="fa fa-cloud-upload" aria-hidden="true">Browse</i>
-            </button>
-        </span>
+        <button class="button" type="button" @click="browse">
+            <i class="fa fa-cloud-upload" aria-hidden="true">Browse</i>
+        </button>
     </div>
 </template>
 <script>
@@ -64,8 +72,8 @@
 			},
 
 			deny(){
-				this.$refs['file-manager'].close();
 				this.selected_files = [];
+				this.$refs['file-manager'].close();
 			},
 
 			close(){
@@ -75,6 +83,7 @@
 			confirm(){
 				this.files = JSON.parse(JSON.stringify(this.selected_files));
 				this.selected_files = [];
+				this.$refs['file-manager'].close();
 			},
 
 			getSelected(selected_files){
