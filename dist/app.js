@@ -3084,9 +3084,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
 
 Vue.component('file-manager', __webpack_require__(1));
 
@@ -3139,7 +3136,6 @@ Vue.component('file-manager', __webpack_require__(1));
 		},
 		close: function close() {
 			this.showModal = false;
-			return false;
 		},
 		confirm: function confirm() {
 			this.files = JSON.parse(JSON.stringify(this.selected_files));
@@ -3163,21 +3159,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "dismiss-on": "close-button esc",
       "title": "Select file"
-    },
-    on: {
-      "confirm": _vm.confirm,
-      "close": _vm.close,
-      "deny": _vm.deny
     }
-  }, [(_vm.showModal) ? _c('file-manager', {
-    attrs: {
-      "multiple": _vm.multiple,
-      "modalMode": true
-    },
-    on: {
-      "selected": _vm.getSelected
-    }
-  }) : _vm._e()], 1), _vm._v(" "), _c('span', {
+  }), _vm._v(" "), _c('span', {
     domProps: {
       "innerHTML": _vm._s(_vm.renderPath)
     }

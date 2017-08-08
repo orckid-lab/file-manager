@@ -1,13 +1,10 @@
 <template>
     <div class="input-group">
-        <ui-confirm dismiss-on="close-button esc" ref="file-manager" title="Select file"
-					@confirm="confirm"
-					@close="close"
-					@deny="deny">
-            <file-manager v-if="showModal"
+        <ui-confirm dismiss-on="close-button esc" ref="file-manager" title="Select file">
+            <!--<file-manager v-if="showModal"
                           @selected="getSelected"
                           :multiple="multiple"
-                          :modalMode="true"></file-manager>
+                          :modalMode="true"></file-manager>-->
         </ui-confirm>
         <!--<input type="text" :placeholder="placeholder" name="file_name" readonly="readonly" :value="formattedFiles">-->
         <span v-html="renderPath"></span>
@@ -73,7 +70,6 @@
 
 			close(){
 				this.showModal = false;
-				return false;
 			},
 
 			confirm(){
