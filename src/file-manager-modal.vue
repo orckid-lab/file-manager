@@ -1,9 +1,9 @@
 <template>
     <div class="input-group">
         <ui-confirm dismiss-on="close-button esc" ref="file-manager" title="Select file"
-					@confirm.prevent="confirm"
-					@close.prevent="close"
-					@deny.prevent="deny">
+					@confirm="confirm"
+					@close="close"
+					@deny="deny">
             <file-manager v-if="showModal"
                           @selected="getSelected"
                           :multiple="multiple"
@@ -73,6 +73,7 @@
 
 			close(){
 				this.showModal = false;
+				return false;
 			},
 
 			confirm(){
