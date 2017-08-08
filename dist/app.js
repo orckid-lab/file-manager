@@ -3083,6 +3083,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 Vue.component('file-manager', __webpack_require__(1));
 
@@ -3098,6 +3099,9 @@ Vue.component('file-manager', __webpack_require__(1));
 		placeholder: {
 			type: String,
 			required: false
+		},
+		value: {
+			type: String
 		}
 	},
 
@@ -3106,6 +3110,9 @@ Vue.component('file-manager', __webpack_require__(1));
 			return this.files.map(function (file) {
 				return file.name;
 			}).join(',');
+		},
+		renderPath: function renderPath() {
+			return this.formattedFiles ? this.formattedFiles : this.placeholder;
 		}
 	},
 
@@ -3136,6 +3143,7 @@ Vue.component('file-manager', __webpack_require__(1));
 		},
 		getSelected: function getSelected(selected_files) {
 			this.selected_files = selected_files;
+			this.$emit('input', selected_files);
 		}
 	}
 });
@@ -3150,6 +3158,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('ui-confirm', {
     ref: "file-manager",
     attrs: {
+      "dismiss-on": "close-button esc",
       "title": "Select file"
     },
     on: {
@@ -3165,15 +3174,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     on: {
       "selected": _vm.getSelected
     }
-  }) : _vm._e()], 1), _vm._v(" "), _c('input', {
-    attrs: {
-      "type": "text",
-      "placeholder": _vm.placeholder,
-      "name": "file_name",
-      "readonly": "readonly"
-    },
+  }) : _vm._e()], 1), _vm._v(" "), _c('span', {
     domProps: {
-      "value": _vm.formattedFiles
+      "innerHTML": _vm._s(_vm.renderPath)
     }
   }), _vm._v(" "), _vm._l((_vm.files), function(file) {
     return _c('input', {
