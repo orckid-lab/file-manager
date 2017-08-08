@@ -3084,6 +3084,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 Vue.component('file-manager', __webpack_require__(1));
 
@@ -3134,8 +3135,9 @@ Vue.component('file-manager', __webpack_require__(1));
 			this.$refs['file-manager'].close();
 			this.selected_files = [];
 		},
-		close: function close() {
+		close: function close(event) {
 			this.showModal = false;
+			event.preventDefault();
 		},
 		confirm: function confirm() {
 			this.files = JSON.parse(JSON.stringify(this.selected_files));
@@ -3164,7 +3166,6 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     on: {
       "confirm": _vm.confirm,
       "close": function($event) {
-        $event.preventDefault();
         _vm.close($event)
       },
       "deny": _vm.deny
