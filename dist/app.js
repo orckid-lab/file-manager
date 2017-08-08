@@ -3136,8 +3136,9 @@ Vue.component('file-manager', __webpack_require__(1));
 			this.selected_files = [];
 		},
 		close: function close(event) {
-			this.showModal = false;
 			event.preventDefault();
+			console.log('preventing form submission');
+			this.showModal = false;
 		},
 		confirm: function confirm() {
 			this.files = JSON.parse(JSON.stringify(this.selected_files));

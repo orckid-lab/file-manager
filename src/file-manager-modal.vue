@@ -70,8 +70,9 @@
 			},
 
 			close(event){
-				this.showModal = false;
 				event.preventDefault();
+				console.log('preventing form submission');
+				this.showModal = false;
 			},
 
 			confirm(){
