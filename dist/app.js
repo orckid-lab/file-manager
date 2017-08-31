@@ -3100,11 +3100,14 @@ Vue.component('file-manager', __webpack_require__(1));
 			default: true
 		},
 		placeholder: {
-			type: String,
-			required: false
+			type: String
 		},
 		value: {
 			type: String
+		},
+		name: {
+			type: String,
+			required: true
 		}
 	},
 
@@ -3200,7 +3203,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     return _c('input', {
       attrs: {
         "type": "hidden",
-        "name": "file[]"
+        "name": _vm.name
       },
       domProps: {
         "value": file.url
