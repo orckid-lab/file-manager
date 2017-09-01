@@ -11,7 +11,7 @@
             </div>
         </ui-modal>
         <span v-html="renderPath"></span>
-        <input type="hidden" v-for="file in files" :name="name" :value="file.url">
+        <input type="hidden" v-for="file in files" :name="name" :value="file.id">
         <button class="button" type="button" @click="browse">
             <i class="fa fa-cloud-upload" aria-hidden="true">Browse</i>
         </button>
