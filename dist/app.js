@@ -3206,7 +3206,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         "name": _vm.name
       },
       domProps: {
-        "value": file.url
+        "value": file.token
       }
     })
   }), _vm._v(" "), _c('button', {
