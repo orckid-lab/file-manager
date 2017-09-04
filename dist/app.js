@@ -3102,9 +3102,7 @@ Vue.component('file-manager', __webpack_require__(1));
 		placeholder: {
 			type: String
 		},
-		value: {
-			type: String
-		},
+		value: {},
 		name: {
 			type: String,
 			required: true

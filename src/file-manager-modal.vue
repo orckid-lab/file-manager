@@ -33,7 +33,7 @@
 				type: String
             },
             value: {
-				type: String,
+
             },
             name: {
 				type: String,
