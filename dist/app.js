@@ -3150,7 +3150,7 @@ Vue.component('file-manager', __webpack_require__(1));
 		},
 		getSelected: function getSelected(selected_files) {
 			this.selected_files = selected_files;
-			this.$emit('input', selected_files);
+			this.$emit('input', !this.multiple ? selected_files[0] : selected_files);
 		}
 	}
 });
