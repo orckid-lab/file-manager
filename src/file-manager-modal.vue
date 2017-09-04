@@ -87,6 +87,7 @@
 			},
 
 			updateValue(value){
+				console.log('value is ', value);
 				this.$emit('input', value);
             }
 		}

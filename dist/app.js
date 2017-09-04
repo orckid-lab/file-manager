@@ -3152,6 +3152,7 @@ Vue.component('file-manager', __webpack_require__(1));
 			this.selected_files = selected_files;
 		},
 		updateValue: function updateValue(value) {
+			console.log('value is ', value);
 			this.$emit('input', value);
 		}
 	}
