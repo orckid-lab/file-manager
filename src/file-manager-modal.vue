@@ -11,7 +11,7 @@
             </div>
         </ui-modal>
         <span v-html="renderPath"></span>
-        <input type="hidden" v-for="file in files" :name="name" :value="file.token">
+        <input type="hidden" v-for="file in files" :name="name" :value="file.token" @input="updateValue($event.target.value)">
         <button class="button" type="button" @click="browse">
             <i class="fa fa-cloud-upload" aria-hidden="true">Browse</i>
         </button>
@@ -84,7 +84,11 @@
 
 			getSelected(selected_files){
 				this.selected_files = selected_files;
-			}
+			},
+
+			updateValue(value){
+				this.$emit('input', value);
+            }
 		}
 	}
 </script>

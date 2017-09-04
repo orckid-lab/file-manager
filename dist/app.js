@@ -3150,6 +3150,9 @@ Vue.component('file-manager', __webpack_require__(1));
 		},
 		getSelected: function getSelected(selected_files) {
 			this.selected_files = selected_files;
+		},
+		updateValue: function updateValue(value) {
+			this.$emit('input', value);
 		}
 	}
 });
@@ -3207,6 +3210,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       },
       domProps: {
         "value": file.token
+      },
+      on: {
+        "input": function($event) {
+          _vm.updateValue($event.target.value)
+        }
       }
     })
   }), _vm._v(" "), _c('button', {
